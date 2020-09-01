@@ -1,0 +1,4 @@
+# Project exclude paths
+/photo-app-api-account-management/target/
+/photo-app-api-users/target/
+/photo-app-api-zuul-api-gateway-application/target/
