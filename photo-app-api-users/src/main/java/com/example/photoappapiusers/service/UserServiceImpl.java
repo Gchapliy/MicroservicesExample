@@ -5,7 +5,9 @@ import com.example.photoappapiusers.model.data.AlbumServiceClient;
 import com.example.photoappapiusers.model.data.UserEntity;
 import com.example.photoappapiusers.model.dto.UserDto;
 import com.example.photoappapiusers.repository.UserRepository;
+import feign.FeignException;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.core.env.Environment;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @AllArgsConstructor
 @Service
 public class UserServiceImpl implements UserService{
@@ -75,8 +78,13 @@ public class UserServiceImpl implements UserService{
 //        ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
 //        });
 //        List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
+        List<AlbumResponseModel> albumsList = null;
 
-        List<AlbumResponseModel> albumsList = albumServiceClient.getAlbums(userId);
+        try {
+            albumsList = albumServiceClient.getAlbums(userId);
+        } catch (FeignException e){
+            log.error(e.getLocalizedMessage());
+        }
 
         userDto.setAlbums(albumsList);
 
