@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/photo-app-api-config-server/pom.xml" />
         <option value="$PROJECT_DIR$/photo-app-api-zuul-api-gateway-application/pom.xml" />
+        <option value="$PROJECT_DIR$/photo-app-api-albums/pom.xml" />
       </list>
     </option>
   </component>

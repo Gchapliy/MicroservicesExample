@@ -3,6 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/photo-app-api-account-management" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/photo-app-api-albums" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/photo-app-api-config-server" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/photo-app-api-users" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/photo-app-api-zuul-api-gateway-application" charset="UTF-8" />

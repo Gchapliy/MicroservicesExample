@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/photo-app-api-albums/PhotoAppApiAlbums.iml" filepath="$PROJECT_DIR$/photo-app-api-albums/PhotoAppApiAlbums.iml" />
       <module fileurl="file://$PROJECT_DIR$/PhotoAppConfiguration/PhotoAppConfiguration.iml" filepath="$PROJECT_DIR$/PhotoAppConfiguration/PhotoAppConfiguration.iml" />
       <module fileurl="file://$PROJECT_DIR$/photo-app-api-account-management/photo-app-api-account-management.iml" filepath="$PROJECT_DIR$/photo-app-api-account-management/photo-app-api-account-management.iml" />
       <module fileurl="file://$PROJECT_DIR$/photo-app-api-config-server/photo-app-api-config-server.iml" filepath="$PROJECT_DIR$/photo-app-api-config-server/photo-app-api-config-server.iml" />

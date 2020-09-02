@@ -9,9 +9,10 @@
         <outputRelativeToContentRoot value="true" />
         <module name="photo-app-api-zuul-api-gateway-application" />
         <module name="photo-app-api-users" />
-        <module name="photo-app-api-config-server" />
         <module name="photo-app-api-account-management" />
         <module name="photo-app-discovery-service" />
+        <module name="PhotoAppApiAlbums" />
+        <module name="photo-app-api-config-server" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -21,10 +22,12 @@
       <module name="photo-app-api-zuul-api-gateway" target="1.8" />
       <module name="photo-app-api-zuul-api-gateway-application" target="1.8" />
       <module name="photo-app-discovery-service" target="1.8" />
+      <module name="PhotoAppApiAlbums" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="PhotoAppApiAlbums" options="-parameters" />
       <module name="photo-app-api-account-management" options="-parameters" />
       <module name="photo-app-api-config-server" options="-parameters" />
       <module name="photo-app-api-users" options="-parameters" />
