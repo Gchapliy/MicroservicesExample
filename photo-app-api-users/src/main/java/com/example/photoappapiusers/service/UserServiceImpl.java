@@ -1,6 +1,7 @@
 package com.example.photoappapiusers.service;
 
 import com.example.photoappapiusers.model.AlbumResponseModel;
+import com.example.photoappapiusers.model.data.AlbumServiceClient;
 import com.example.photoappapiusers.model.data.UserEntity;
 import com.example.photoappapiusers.model.dto.UserDto;
 import com.example.photoappapiusers.repository.UserRepository;
@@ -27,7 +28,8 @@ public class UserServiceImpl implements UserService{
     UserRepository userRepository;
     ModelMapper modelMapper;
     BCryptPasswordEncoder bCryptPasswordEncoder;
-    RestTemplate restTemplate;
+    //RestTemplate restTemplate;
+    AlbumServiceClient albumServiceClient;
     Environment env;
 
     @Override
@@ -68,11 +70,13 @@ public class UserServiceImpl implements UserService{
 
         UserDto userDto = modelMapper.map(userEntity, UserDto.class);
 
-        String albumsUrl = String.format(env.getProperty("albums.url"), userId);
+//        String albumsUrl = String.format(env.getProperty("albums.url"), userId);
+//
+//        ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
+//        });
+//        List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
 
-        ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
-        });
-        List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
+        List<AlbumResponseModel> albumsList = albumServiceClient.getAlbums(userId);
 
         userDto.setAlbums(albumsList);
 
