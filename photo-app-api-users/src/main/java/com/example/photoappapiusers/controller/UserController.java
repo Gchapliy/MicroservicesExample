@@ -45,4 +45,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(modelMapper.map(userDto, UserResponseModel.class));
     }
+
+    @GetMapping(value = "/{userId}", produces={MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<UserResponseModel> getUser(@PathVariable("userId")String userId){
+
+        UserDto userDto = userService.getUserByUserId(userId);
+        UserResponseModel returnValue = modelMapper.map(userDto, UserResponseModel.class);
+
+        return ResponseEntity.status(HttpStatus.OK).body(returnValue);
+    }
 }

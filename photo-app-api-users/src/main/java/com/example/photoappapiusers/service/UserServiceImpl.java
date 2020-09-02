@@ -52,4 +52,12 @@ public class UserServiceImpl implements UserService{
 
         return modelMapper.map(userEntity, UserDto.class);
     }
+
+    @Override
+    public UserDto getUserByUserId(String userId) {
+        UserEntity userEntity = userRepository.findByUserId(userId);
+        if(userEntity == null) throw new UsernameNotFoundException("User not found");
+
+        return modelMapper.map(userEntity, UserDto.class);
+    }
 }
