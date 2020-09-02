@@ -1,9 +1,11 @@
 package com.example.photoappapiusers.model.dto;
 
+import com.example.photoappapiusers.model.AlbumResponseModel;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,4 +19,5 @@ public class UserDto implements Serializable {
     private String password;
     private String userId;
     private String encryptedPassword;
+    private List<AlbumResponseModel> albums;
 }

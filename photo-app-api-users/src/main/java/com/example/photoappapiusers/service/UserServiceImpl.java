@@ -1,18 +1,24 @@
 package com.example.photoappapiusers.service;
 
+import com.example.photoappapiusers.model.AlbumResponseModel;
 import com.example.photoappapiusers.model.data.UserEntity;
 import com.example.photoappapiusers.model.dto.UserDto;
 import com.example.photoappapiusers.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @AllArgsConstructor
@@ -21,6 +27,8 @@ public class UserServiceImpl implements UserService{
     UserRepository userRepository;
     ModelMapper modelMapper;
     BCryptPasswordEncoder bCryptPasswordEncoder;
+    RestTemplate restTemplate;
+    Environment env;
 
     @Override
     public UserDto createUser(UserDto userDetails) {
@@ -58,6 +66,16 @@ public class UserServiceImpl implements UserService{
         UserEntity userEntity = userRepository.findByUserId(userId);
         if(userEntity == null) throw new UsernameNotFoundException("User not found");
 
-        return modelMapper.map(userEntity, UserDto.class);
+        UserDto userDto = modelMapper.map(userEntity, UserDto.class);
+
+        String albumsUrl = String.format(env.getProperty("albums.url"), userId);
+
+        ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
+        });
+        List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
+
+        userDto.setAlbums(albumsList);
+
+        return userDto;
     }
 }
