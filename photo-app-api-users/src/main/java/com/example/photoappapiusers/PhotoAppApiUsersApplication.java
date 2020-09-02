@@ -1,5 +1,6 @@
 package com.example.photoappapiusers;
 
+import com.example.photoappapiusers.model.dto.FeignErrorDecoder;
 import feign.Logger;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -43,5 +44,10 @@ public class PhotoAppApiUsersApplication {
     @Bean
     Logger.Level feignLoggerLevel(){
         return Logger.Level.FULL;
+    }
+
+    @Bean
+    public FeignErrorDecoder getFeignErrorDecoder(){
+        return new FeignErrorDecoder();
     }
 }
