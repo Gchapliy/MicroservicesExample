@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService{
     ModelMapper modelMapper;
     BCryptPasswordEncoder bCryptPasswordEncoder;
     //RestTemplate restTemplate;
-    AlbumServiceClient albumServiceClient;
+  //  AlbumServiceClient albumServiceClient;
     Environment env;
 
     @Override
@@ -81,11 +81,11 @@ public class UserServiceImpl implements UserService{
 
         log.info("Before calling albums Microservice");
 
-        List<AlbumResponseModel> albumsList = albumsList = albumServiceClient.getAlbums(userId);
+     /*   List<AlbumResponseModel> albumsList = albumsList = albumServiceClient.getAlbums(userId);
 
         log.info("After calling albums Microservice");
 
-        userDto.setAlbums(albumsList);
+        userDto.setAlbums(albumsList);*/
 
         return userDto;
     }
